@@ -14,7 +14,7 @@ use openvino_sys::{
     ie_core_read_network_from_memory, ie_core_t,
 };
 
-const NUM_THREADS: i32 = 1;
+static NUM_THREADS: i8 = 1;
 
 /// See [Core](https://docs.openvinotoolkit.org/latest/classInferenceEngine_1_1Core.html).
 pub struct Core {

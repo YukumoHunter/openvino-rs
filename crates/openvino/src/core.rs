@@ -14,7 +14,7 @@ use openvino_sys::{
     ie_core_read_network_from_memory, ie_core_t,
 };
 
-static NUM_THREADS: i8 = 1;
+static NUM_THREADS: i32 = 1;
 
 /// See [Core](https://docs.openvinotoolkit.org/latest/classInferenceEngine_1_1Core.html).
 pub struct Core {
@@ -96,7 +96,7 @@ impl Core {
         // users to pass a map to this function that gets converted to an `ie_config_t` (TODO).
         let empty_config = ie_config_t {
             name: cstr!("INFERENCE_NUM_THREADS"),
-            value: std::ptr::addr_of!(NUM_THREADS),
+            value: std::ptr::addr_of!(NUM_THREADS).cast(),
             next: std::ptr::null_mut(),
         };
 
